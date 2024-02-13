@@ -1,0 +1,27 @@
+# conda environment configuration file
+# for urchins project
+
+name: urchins
+channels:
+  - conda-forge
+  - pytorch
+  - nvidia
+  - defaults
+dependencies:
+  - python=3.9
+  - numpy
+  - seaborn
+  - matplotlib
+  - pip
+  - pandas
+  - pillow
+  - scipy
+  - scikit-image
+  - scikit-learn
+  - pytorch::pytorch=1.12.0
+  - torchvision=0.13.0
+  - nvidia::cudatoolkit=11.3
+  - shapely
+  - pylint
+  - pytorch-lightning
+  - opencv>=4.6

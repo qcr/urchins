@@ -24,7 +24,11 @@ The goal is to build a tool (software pipeline) that takes in a video and output
 - OpoenCV
 
 # Installation
-- todo
+- Operating system should be Ubuntu 20.04..6 LTS
+- run `make_urchins_venv.sh`
+- `conda activate urchins`
+- navigate to urchins folder
+- install CVAT locally: https://opencv.github.io/cvat/docs/administration/basics/installation/#ubuntu-1804-x86_64amd64 
 
 # Data
 - location of the data (folders/directories/links)
