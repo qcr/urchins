@@ -17,6 +17,10 @@ The goal is to build a tool (software pipeline) that takes in a video and output
 - Provides size characteristics
 - We want to make the software modular, so that future extensions of this project can still use this code (eg, put this code on a robot as a module). 
 
+# Whiteboard:
+Shared edit link to Kelp Conservation Crew:
+https://connectqutedu-my.sharepoint.com/:wb:/g/personal/tsaid_qut_edu_au/EeTC8KNiBLFEpLtww-Zt6KIBPSwAP5p0iPyUS8k3GmRYOQ?e=UHOsiR
+
 # Software Environment
 - Python 3.9+
 - PyTorch
