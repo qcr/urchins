@@ -4,8 +4,8 @@ Welcome to the urchin monitoring project for giant kelp reforestation in Tasmani
 
 Since it is currently difficult to get in-situ data in Tasmania, the current dataset comprises of video captured from the tanks of the Australian Instittute for Marine Science (AIMS) National Sea Simulator.  Serving as proxies for the long-spined and short-spined urchins, the two species of urchins in the current AIMS dataset are:
 
-  - Orange = tripneustes gratilla,
-  - black/purple/green = Echinometra mathaei
+  - Orange = tripneustes gratilla = Tripy
+  - black/purple/green = Echinometra mathaei = Rings
 
 The goal is to build a tool (software pipeline) that takes in a video and outputs a count of the two different species of urchins and provides size metrics that can be used to inform control methods for the urchins. 
 
@@ -21,14 +21,16 @@ The goal is to build a tool (software pipeline) that takes in a video and output
 - Python 3.9+
 - PyTorch
 - Yolov8
-- OpoenCV
+- OpenCV
+- Yolov8 (https://github.com/ultralytics/ultralytics)
 
 # Installation
 - Operating system should be Ubuntu 20.04..6 LTS
 - run `make_urchins_venv.sh`
 - `conda activate urchins`
+- run `pip install ultralytics` 
 - navigate to urchins folder
-- install CVAT locally: https://opencv.github.io/cvat/docs/administration/basics/installation/#ubuntu-1804-x86_64amd64 
+- install CVAT locally: https://opencv.github.io/cvat/docs/administration/basics/installation/#ubuntu-1804-x86_64amd64 or create an account: https://www.cvat.ai/
 
 # Data
 - location of the data (folders/directories/links)
