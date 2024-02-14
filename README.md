@@ -37,7 +37,10 @@ https://connectqutedu-my.sharepoint.com/:wb:/g/personal/tsaid_qut_edu_au/EeTC8KN
 - install CVAT locally: https://opencv.github.io/cvat/docs/administration/basics/installation/#ubuntu-1804-x86_64amd64 or create an account: https://www.cvat.ai/
 
 # Data
-- location of the data (folders/directories/links)
+### location of the data (folders/directories/links)
+- You can find our data under https://connectqutedu-my.sharepoint.com/:f:/r/personal/tsaid_qut_edu_au/Documents/urchins/20231201_urchin_videos_aims/sorted_videos?csf=1&web=1&e=ajYKbu
+- Since the file is larger than 4GB when downloaded the zip might show up as corrupted - [FixOneDriveZip](https://github.com/pmqs/Fix-OneDrive-Zip) offers a solution that worked for us on Ubuntu. 
+  
 - location of the data log
 - data split, key parameters
 - location of annotation tools: CVAT
