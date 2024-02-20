@@ -2,6 +2,7 @@ import os
 import argparse
 import cv2
 
+
 def extract_frames(video_path, output_folder, fps=None):
     # Open the video file
     video = cv2.VideoCapture(video_path)
