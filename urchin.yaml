@@ -1,0 +1,18 @@
+# data config file that defines:
+# the dataset root directory "path"
+# the relative paths to train/val/test image directories (or text files with image paths)
+# a class "names" dictionary
+
+path: /home/java/Java/data/cslics_2924_alor_1000_(2022n23_combined)
+train: images/train # training images relative to 'path'
+val: images/val # validation images relative to 'path'
+test: images/test # test images (optional)
+
+# Classes
+names:
+  0: FourEightCell
+  1: FirstCleavage
+  2: TwoCell
+  3: Advanced
+  4: Damaged
+  5: Egg
