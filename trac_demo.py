@@ -19,7 +19,7 @@ while cap.isOpened():
 
         # Visualize the results on the frame
         annotated_frame = results[0].plot()
-
+        
         cv2.namedWindow("YOLOv8 Tracking",cv2.WINDOW_NORMAL)
         cv2.resizeWindow("YOLOv8 Tracking", 600, 600)
         # Display the annotated frame
