@@ -30,6 +30,10 @@ https://connectqutedu-my.sharepoint.com/:wb:/g/personal/tsaid_qut_edu_au/EeTC8KN
 
 # Installation
 - Operating system should be Ubuntu 20.04..6 LTS
+- Install Conda `curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+bash Miniforge3-$(uname)-$(uname -m).sh`
+- run `source ~/miniforge3/etc/profile.d/mamba.sh 
+source ~/miniforge3/etc/profile.d/conda.sh`
 - run `make_urchins_venv.sh`
 - `conda activate urchins`
 - run `pip install ultralytics` 
