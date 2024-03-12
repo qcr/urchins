@@ -158,3 +158,7 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+20240222_aims_GX010887_detection_demo.mp4
+weights/X_TempName_2024_03_01.pt
+weights/X_Urchin_Detector_2024_03_12.pt
+output.mp4
