@@ -15,9 +15,9 @@ import time
 import pickle
 from ultralytics import YOLO
 
-weights_dir = 'weights/best.pt'
-img_dir = '/home/java/Java/data/20231201_urchin/images/test'
-save_dir = '/home/java/Java/data/20231201_urchin/images/test/detect'
+weights_dir = 'weights/X_Urchin_Detector_2024_03_12.pt'
+img_dir = '/home/wardlewo/Reggie/data/20231201_urchin/images/test'
+save_dir = '/home/wardlewo/Reggie/data/20231201_urchin/test_results/detect'
 os.makedirs(save_dir, exist_ok=True)
 imglist = sorted(glob.glob(os.path.join(img_dir, '*.jpg')))
 max_no = 10
@@ -27,16 +27,19 @@ for i, img_name in enumerate(imglist):
     if i > max_no:
         break
     img = cv.imread(img_name)
-    
-    results = model(img_name)  # return a list of Results objects
+    img_filename = os.path.basename(img_name)
 
+    # Perform detection on the image
+    results = model(img)  # Pass image data directly
+    
     # Process results list
     for result in results:
         boxes = result.boxes  # Boxes object for bounding box outputs
         keypoints = result.keypoints  # Keypoints object for pose outputs
         probs = result.probs  # Probs object for classification outputs
         result.show()  # display to screen
-        result.save(filename = os.path.join(save_dir, img_name + '_detect.jpg'))  # save to disk
-        import code
-        code.interact(local=dict(globals(), **locals()))
-
+    
+        # Construct the save path
+        save_path = os.path.join(save_dir, img_filename + '_detect.jpg')
+    
+        result.save(filename=save_path)  # save to disk
