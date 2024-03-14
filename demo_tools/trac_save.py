@@ -6,7 +6,7 @@ from ultralytics import YOLO
 model = YOLO('weights/X_Urchin_Detector_2024_03_12.pt')
 
 # Open the video file
-video_path = "/home/wardlewo/Reggie/data/20240222_urchin_videos_aims/unseen_test/20240222_aims_GX010887.MP4"
+video_path = "/home/wardlewo/Reggie/data/20240222_urchin_videos_aims/unseen_test/20240222_aims_GX010899.MP4"
 cap = cv2.VideoCapture(video_path)
 video_filename = os.path.splitext(os.path.basename(video_path))[0]
 # Define the codec and create VideoWriter object
@@ -24,7 +24,7 @@ while cap.isOpened():
 
     if success:
         # Run YOLOv8 tracking on the frame, persisting tracks between frames
-        results = model.track(frame, persist=True)
+        results = model.track(frame, persist=True, conf=0.9)
 
         # Visualize the results on the frame
         annotated_frame = results[0].plot()
@@ -33,8 +33,8 @@ while cap.isOpened():
         out.write(annotated_frame)
 
         # Break the loop if 'q' is pressed
-        if cv2.waitKey(1) & 0xFF == ord("q"):
-            break
+        #if cv2.waitKey(1) & 0xFF == ord("q"):
+           # break
     else:
         # Break the loop if the end of the video is reached
         break

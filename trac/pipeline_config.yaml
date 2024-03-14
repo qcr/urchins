@@ -1,0 +1,34 @@
+# Pipeline configuration file for TurtleTrackingPipeline.py
+
+# video file
+video_path_in: /home/wardlewo/Reggie/data/20240222_urchin_videos_aims/unseen_test/20240222_aims_GX010887.MP4
+# output directory
+save_dir: /home/wardlewo/Reggie/data/urchin_data_output/20240313/
+# object detection model
+detection_model_path: /home/wardlewo/Reggie/urchins/weights/20240312_yolov8x_urchinDetector_best.pt
+
+# frame skip
+frame_skip: 2
+
+# detection confidence
+detection_confidence_threshold: 0.4
+
+# detection iou threshold
+# detection_iou_threshold: 0.5
+
+# overall classification confidence
+overall_class_confidence_threshold: 0.4
+
+# overall class track threshold
+overall_class_track_threshold: 0.3
+
+# detection/tracker image size
+detector_image_size: 640
+
+# classification image size
+classifier_image_size: 64
+
+# NOTE:
+# tracking parameters are located in install location for Yolov8
+# was in /mambaforge/envs/turtles/lib/python3.9/site-packages/ultralytics/tracker/cfg/
+# now default to locally-added bottracker/bytetracker config.yamls

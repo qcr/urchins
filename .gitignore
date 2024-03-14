@@ -162,3 +162,10 @@ cython_debug/
 weights/X_TempName_2024_03_01.pt
 weights/X_Urchin_Detector_2024_03_12.pt
 output.mp4
+20240222_aims_GX010899_detection_demo.mp4
+runs/detect/predict/Hair.png
+.gitignore
+.gitignore
+weights/20240312_yolov8x_urchinDetector_best.pt
+.gitignore
+weights/20240301_yolov8x_urchinDetector.pt
