@@ -2,7 +2,7 @@ from ultralytics import YOLO
 
 
 # Yolo's Model 
-model = YOLO('X_TempName_2024_03_01.pt')
+model = YOLO('X_Urchin_Detector_2024_03_12.pt')
 
 # load pretrained model
 # model = YOLO('weights/best.pt')
@@ -20,7 +20,8 @@ model.train(data='data/urchin.yaml',
             hsv_h = 0.015,
             hsv_s = 0.7,
             hsv_v = 0.4,
-            perspective = 0.0
+            perspective = 0.0,
+            #output_dir="/home/wardlewo/Reggie/ultralytics/runs/detection/"
             )
 
 print('done')

@@ -10,7 +10,7 @@ import torchvision
 import glob
 # import numpy as np
 # from PIL import Image as PILImage
-import cv2 as cv
+import cv as cv
 import time
 import pickle
 from ultralytics import YOLO
