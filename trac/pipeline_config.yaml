@@ -1,12 +1,11 @@
 # Pipeline configuration file for TurtleTrackingPipeline.py
 
 # video file
-video_path_in: /home/wardlewo/Reggie/data/20240222_urchin_videos_aims/unseen_test/20240222_aims_GX010887.MP4
+video_path_in: /home/java/Java/data/20231201_urchin/sorted_videos/unseen_test/GX010350.MP4
 # output directory
-save_dir: /home/wardlewo/Reggie/data/urchin_data_output/20240313/
+save_dir: /home/java/Java/data/20231201_urchin/sorted_videos/unseen_test/
 # object detection model
-detection_model_path: /home/wardlewo/Reggie/urchins/weights/20240312_yolov8x_urchinDetector_best.pt
-
+detection_model_path: /home/java/Java/ultralytics/runs/detect/train10/weights/best.pt
 # frame skip
 frame_skip: 2
 

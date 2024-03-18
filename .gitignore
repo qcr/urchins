@@ -169,3 +169,4 @@ runs/detect/predict/Hair.png
 weights/20240312_yolov8x_urchinDetector_best.pt
 .gitignore
 weights/20240301_yolov8x_urchinDetector.pt
+trac/pipeline_config.yaml
