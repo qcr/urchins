@@ -1,5 +1,5 @@
 import os
-import cv
+import cv2 as cv
 from ultralytics import YOLO
 
 # Load the YOLOv8 model
