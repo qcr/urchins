@@ -1,11 +1,11 @@
 import os
 import argparse
-import cv2
+import cv
 
 
 def extract_frames(video_path, output_folder, fps=None):
     # Open the video file
-    video = cv2.VideoCapture(video_path)
+    video = cv.VideoCapture(video_path)
 
     # Check if the video opened successfully
     if not video.isOpened():
@@ -31,13 +31,13 @@ def extract_frames(video_path, output_folder, fps=None):
             # Save frame as image with name including video file name and frame number
             frame_name = f"{video_name}_frame_{frame_count:05d}.jpg"  # Format frame number with leading zeros
             frame_path = os.path.join(output_video_folder, frame_name)
-            cv2.imwrite(frame_path, frame)
+            cv.imwrite(frame_path, frame)
         else:
             break
 
         # Skip frames if needed
         if fps is not None:
-            for _ in range(int(video.get(cv2.CAP_PROP_FPS) / fps) - 1):
+            for _ in range(int(video.get(cv.CAP_PROP_FPS) / fps) - 1):
                 video.read()
 
     # Release the video capture object

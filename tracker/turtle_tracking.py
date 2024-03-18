@@ -1,4 +1,4 @@
-import cv2 as cv
+import cv as cv
 import os
 import glob
 import code
@@ -155,7 +155,7 @@ class Pipeline:
                                 float(boxes.conf[i]),         # conf
                                 int(boxes.id[i])])            # track id
         
-        self.pub_output_img.publish(self.bridge.cv2_to_imgmsg(annotated_frame, encoding='bgr8'))
+        self.pub_output_img.publish(self.bridge.cv_to_imgmsg(annotated_frame, encoding='bgr8'))
         return box_array
         
 
@@ -224,7 +224,7 @@ class Pipeline:
             if count % self.frame_skip == 0:
                 print(f'frame: {count}')
                 
-                self.pub_clean_img.publish(self.bridge.cv2_to_imgmsg(frame, encoding='bgr8'))
+                self.pub_clean_img.publish(self.bridge.cv_to_imgmsg(frame, encoding='bgr8'))
 
                 # generate unique image name in case of writing frame to file
                 count_str = '{:06d}'.format(count)
