@@ -7,7 +7,7 @@ import numpy as np
 
 def main():
     # Read configuration from YAML file
-    with open("trac/pipeline_config.yaml", "r") as f:
+    with open("tracker/pipeline_config.yaml", "r") as f:
         config = yaml.safe_load(f)
 
     # Extract configuration parameters
@@ -25,7 +25,7 @@ def main():
 
     # Define the codec and create VideoWriter object
     codec = cv2.VideoWriter_fourcc(*'mp4v')
-    output_file = os.path.join(output_dir, f"{video_filename}_BS_trac_demo.mp4")
+    output_file = os.path.join(output_dir, f"{video_filename}_BS_3_trac_demo.mp4")
     output_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     output_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     fps = int(cap.get(cv2.CAP_PROP_FPS))
@@ -61,8 +61,6 @@ def main():
 
                         # Draw the tracking lines
                         points = np.hstack(track).astype(np.int32).reshape((-1, 1, 2))
-                        cv2.polylines(annotated_frame, [points], isClosed=False, color=(230, 230, 230), thickness=10)
-                        out.write(annotated_frame)
                         #cv2.imshow("YOLOv8 Tracking lines", resized_frame)
             # Visualize the results on the frame
             annotated_frame = results[0].plot()
@@ -71,8 +69,6 @@ def main():
             out.write(annotated_frame)
 
             # Break the loop if 'q' is pressed
-            if cv2.waitKey(1) & 0xFF == ord("q"):
-               break
         else:
             # Break the loop if the end of the video is reached
             break

@@ -1,11 +1,14 @@
 # Pipeline configuration file for TurtleTrackingPipeline.py
 
 # video file
-video_path_in: /home/wardlewo/Reggie/data/20240222_urchin_videos_aims/unseen_test/20240222_aims_GX010887.MP4
+video_path_in: /home/wardlewo/Reggie/data/20240222_urchin_videos_aims/video/unseen_test/20240222_aims_GX010887.MP4
 # output directory
-save_dir: /home/wardlewo/Reggie/data/urchin_data_output/20240313/
+save_dir: /home/wardlewo/Reggie/data/urchin_data_output/
 # object detection model
-detection_model_path: /home/wardlewo/Reggie/urchins/weights/20240312_yolov8x_urchinDetector_best.pt
+#detection_model_path: /home/wardlewo/Reggie/urchins/weights/20240312_yolov8x_urchinDetector_best.pt
+detection_model_path: /home/wardlewo/Reggie/urchins/weights/20240327_yolov8x_urchinDetector_best.pt
+
+custom_tracker: /home/wardlewo/Reggie/urchins/tracker/custom_tracker.yaml
 
 # frame skip
 frame_skip: 2
@@ -14,7 +17,7 @@ frame_skip: 2
 detection_confidence_threshold: 0.4
 
 # detection iou threshold
-# detection_iou_threshold: 0.5
+detection_iou_threshold: 0.5
 
 # overall classification confidence
 overall_class_confidence_threshold: 0.4

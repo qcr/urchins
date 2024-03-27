@@ -15,8 +15,8 @@ import time
 import pickle
 from ultralytics import YOLO
 
-weights_dir = 'weights/X_Urchin_Detector_2024_03_12.pt'
-img_dir = '/home/wardlewo/Reggie/data/20231201_urchin/images/test'
+weights_dir = 'weights/20240312_yolov8x_urchinDetector_best.pt'
+img_dir = '/home/wardlewo/Reggie/data/weird_test'
 save_dir = '/home/wardlewo/Reggie/data/20231201_urchin/test_results/detect'
 os.makedirs(save_dir, exist_ok=True)
 imglist = sorted(glob.glob(os.path.join(img_dir, '*.jpg')))

@@ -3,7 +3,7 @@ import cv2 as cv
 from ultralytics import YOLO
 
 # Load the YOLOv8 model
-model = YOLO('weights/X_Urchin_Detector_2024_03_12.pt')
+model = YOLO('20240312_yolov8x_urchinDetector_best.pt')
 
 # Open the video file
 video_path = "/home/wardlewo/Reggie/data/20240222_urchin_videos_aims/unseen_test/20240222_aims_GX010899.MP4"
