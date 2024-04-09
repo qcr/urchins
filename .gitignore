@@ -173,3 +173,4 @@ trac/pipeline_config.yaml
 tracker/pipeline_config.yaml
 weights/20240327_yolov8x_urchinDetector_best.pt
 yolov8x.pt
+weights/20240409_yolov8x_urchinDetector_best.pt

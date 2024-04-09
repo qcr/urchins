@@ -261,12 +261,12 @@ def run():
     weights_path = config["detection_model_path"]
     conf_threshold = config.get("detection_confidence_threshold")
     frame_skip = config.get("frame_skip")
-    track_config = "/home/java/Java/urchins/tracker/custom_tack.yaml"
+    track_config = config.get("custom_tracker")
     model = YOLO(weights_path)
     track_counts, class_count_list = track(video_path, output_dir, model, track_config, conf_threshold, frame_skip)
     print(f"Number of tracks: {track_counts}")
     print(f"Ring count: {class_count_list[0]} Tripys count: {class_count_list[1]}")
-    manual_count_file = '/home/java/Java/data/20231201_urchin/urchin_counts.xlsx'
+    manual_count_file = config.get("manual_count_file")
     eval(class_count_list, manual_count_file, video_path, run_num=1)
     print("Evaluation complete!")
  
@@ -277,11 +277,11 @@ output_dir = config["save_dir"]
 weights_path = config["detection_model_path"]
 conf_threshold = config.get("detection_confidence_threshold")
 frame_skip = config.get("frame_skip")
-track_config = "/home/java/Java/urchins/tracker/custom_tack.yaml"
+track_config = config.get("custom_tracker")
 model = YOLO(weights_path)
 track_counts, class_count_list = track(video_path, output_dir, model, track_config, conf_threshold, frame_skip)
 print(f"Number of tracks: {track_counts}")
 print(f"Ring count: {class_count_list[0]} Tripys count: {class_count_list[1]}")
-manual_count_file = '/home/java/Java/data/20231201_urchin/urchin_counts.xlsx'
+manual_count_file = ''
 eval(class_count_list, manual_count_file, video_path, run_num=1)
 print(f"Evaluation complete for {video_path}")

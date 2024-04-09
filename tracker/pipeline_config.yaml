@@ -6,9 +6,11 @@ video_path_in: /home/wardlewo/Reggie/data/20240222_urchin_videos_aims/video/unse
 save_dir: /home/wardlewo/Reggie/data/urchin_data_output/
 # object detection model
 #detection_model_path: /home/wardlewo/Reggie/urchins/weights/20240312_yolov8x_urchinDetector_best.pt
-detection_model_path: /home/wardlewo/Reggie/urchins/weights/20240327_yolov8x_urchinDetector_best.pt
+detection_model_path: /home/wardlewo/Reggie/urchins/weights/20240409_yolov8x_urchinDetector_best.pt
 
 custom_tracker: /home/wardlewo/Reggie/urchins/tracker/custom_tracker.yaml
+
+manual_count_file: /home/java/Java/data/20231201_urchin/urchin_counts.xlsx
 
 # frame skip
 frame_skip: 2
