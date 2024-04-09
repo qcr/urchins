@@ -5,7 +5,7 @@ from ultralytics import YOLO
 from collections import defaultdict
 import numpy as np
 
-classes = ['Rings', 'Tripys']
+classes = ['Tripys', 'Rings']
 green = [0, 255, 00] #Rings
 red = [0, 0, 255] #Tripys
 class_colours = [green, red]
@@ -67,8 +67,7 @@ def save_track_img(results, track_history, track_class, frame, save_path, SHOW=F
         cv.imshow("Tracking", frame)
         cv.waitKey(1)
     cv.imwrite(save_path, frame)
-    # import code
-    # code.interact(local=dict(globals(), **locals()))
+
     return track_class
     # except Exception as e:
     #     print(f"Error saving image: {e}")
@@ -83,8 +82,6 @@ def class_counts(track_class, class_count_list):
         else:
             class_count_list[0] += 1
     return class_count_list
-    import code
-    code.interact(local=dict(globals(), **locals()))
 
 
 
@@ -108,7 +105,7 @@ def track(video_path, save_dir, model, track_config, conf_threshold, frame_skip,
     os.makedirs(output_dir, exist_ok=True)
     # Define the codec and create VideoWriter object
     codec = cv.VideoWriter_fourcc(*'mp4v')
-    output_file = os.path.join(output_dir, f"{video_filename}_BS_trac_demo.mp4")
+    output_file = os.path.join(output_dir, f"{video_filename}_CT_trac_demo.mp4")
     output_width = int(cap.get(cv.CAP_PROP_FRAME_WIDTH))
     output_height = int(cap.get(cv.CAP_PROP_FRAME_HEIGHT))
     fps = int(cap.get(cv.CAP_PROP_FPS))
@@ -153,15 +150,15 @@ def track(video_path, save_dir, model, track_config, conf_threshold, frame_skip,
             out.write(annotated_frame)
 
             # Break the loop if 'q' is pressed
-            if cv.waitKey(1) & 0xFF == ord("q"):
-               break
+            #if cv.waitKey(1) & 0xFF == ord("q"):
+            #  break
 
     # Release the video capture object and close the output video writer
     cap.release()
     out.release()
     class_count_list = class_counts(track_class, class_count_list)
-    import code
-    code.interact(local=dict(globals(), **locals()))
+    #import code
+    #code.interact(local=dict(globals(), **locals()))
     #cv.destroyAllWindows()
 
     return len(track_history), class_count_list
@@ -173,7 +170,7 @@ def main():
     weights_path = config["detection_model_path"]
     conf_threshold = config.get("detection_confidence_threshold")
     frame_skip = config.get("frame_skip")
-    track_config = "/home/java/Java/urchins/tracker/custom_tack.yaml"
+    track_config = config.get("custom_tracker")
     model = YOLO(weights_path)
     track_counts, class_count_list = track(video_path, output_dir, model, track_config, conf_threshold, frame_skip)
     print(f"Number of tracks: {track_counts}")
