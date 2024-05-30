@@ -101,8 +101,7 @@ def class_counts(track_class, class_count_list):
         else:
             class_count_list[0] += 1
     return class_count_list
-    import code
-    code.interact(local=dict(globals(), **locals()))
+
 
 def track(video_path, save_dir, model, track_config, conf_threshold, frame_skip, max_count=9999999, SAVE=True):
     """Track objects in a video using the YOLOv8 model.
@@ -175,7 +174,7 @@ def track(video_path, save_dir, model, track_config, conf_threshold, frame_skip,
 
     return len(track_history), class_count_list
 
-def save_track_counts(manual_count_file, class_count_list, run_num, row_int):
+def save_track_counts(manual_count_file, class_count_list, run_num, row_int, sheet_name):
     """Save the track counts against the manual counts
     Args:
         manual_count_file (str): Path to the manual count file.
@@ -185,7 +184,7 @@ def save_track_counts(manual_count_file, class_count_list, run_num, row_int):
     Returns:
         bool: True if successful"""
     wb = openpyxl.load_workbook(manual_count_file)
-    sheet = wb['2023_12_01']
+    sheet = wb[sheet_name]
     row = row_int+3
     col = int(run_num)*2+2
     sheet.cell(row=row, column=col).value = class_count_list[0]
@@ -214,7 +213,7 @@ def compute_stats(model_count, manual_count):
     recall = 0 if (TP + FN) == 0 else TP / (TP + FN)
     return TP, FP, FN, precision, recall
 
-def eval(class_count_list, manual_count_file, video_path, run_num):
+def eval(class_count_list, manual_count_file, video_path, run_num, sheet_name):
     """Print to terminal TP, FP, FN, precion and recall scores
     Args:
         class_count_list (list): List of counts of each class
@@ -226,8 +225,7 @@ def eval(class_count_list, manual_count_file, video_path, run_num):
     man_tripy_count = None
     classstat = {class_label: {'TP': 0, 'FP': 0, 'FN': 0} for class_label in range(0, 2)}
 
-    df = pd.read_excel(manual_count_file, sheet_name='2023_12_01', skiprows=1)
-
+    df = pd.read_excel(manual_count_file, sheet_name=sheet_name, skiprows=1)
     vid_count_list = df['Videos']
     vid_name = os.path.basename(video_path)[:-4]
     for i in range(0, len(vid_count_list)):
@@ -235,7 +233,8 @@ def eval(class_count_list, manual_count_file, video_path, run_num):
             man_tripy_count = df['Tripy'][i]
             man_rings_count = df['Rings'][i]
             break
-    save_track_counts(manual_count_file, class_count_list, run_num, i)
+    save_track_counts(manual_count_file, class_count_list, run_num, i, sheet_name)
+
     if man_tripy_count == None:
         print('Video counts not found')
         return False
@@ -263,11 +262,19 @@ def run():
     frame_skip = config.get("frame_skip")
     track_config = config.get("custom_tracker")
     model = YOLO(weights_path)
+    sheet_name = config.get("sheet_name")
+    run_num = config["num_times_run"]
+    print("************")
+    print(f"run_num:", run_num)
+    print(f"Sheet name:", sheet_name) 
+    print(f"Manual count file:", manual_count_file)
+    print(f"Tracker_model:", track_config)
+    print("************") 
     track_counts, class_count_list = track(video_path, output_dir, model, track_config, conf_threshold, frame_skip)
     print(f"Number of tracks: {track_counts}")
     print(f"Ring count: {class_count_list[0]} Tripys count: {class_count_list[1]}")
     manual_count_file = config.get("manual_count_file")
-    eval(class_count_list, manual_count_file, video_path, run_num=1)
+    eval(class_count_list, manual_count_file, video_path, run_num, sheet_name)
     print("Evaluation complete!")
  
 ## For bash script to iterate over multiple videos
@@ -279,9 +286,17 @@ conf_threshold = config.get("detection_confidence_threshold")
 frame_skip = config.get("frame_skip")
 track_config = config.get("custom_tracker")
 model = YOLO(weights_path)
+manual_count_file = config.get("manual_count_file")
+sheet_name = config.get("sheet_name")
+run_num = config.get("num_times_run")
+print("************")
+print(f"run_num:", run_num)
+print(f"Sheet name:", sheet_name) 
+print(f"Manual count file:", manual_count_file)
+print(f"Tracker_model:", track_config)
+print("************")    
 track_counts, class_count_list = track(video_path, output_dir, model, track_config, conf_threshold, frame_skip)
 print(f"Number of tracks: {track_counts}")
 print(f"Ring count: {class_count_list[0]} Tripys count: {class_count_list[1]}")
-manual_count_file = ''
-eval(class_count_list, manual_count_file, video_path, run_num=1)
+#eval(class_count_list, manual_count_file, video_path, run_num, sheet_name)
 print(f"Evaluation complete for {video_path}")

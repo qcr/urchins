@@ -15,7 +15,7 @@ def main():
     output_dir = config["save_dir"]
     weights_path = config["detection_model_path"]
     conf_threshold = config.get("detection_confidence_threshold")
-
+    custom_tracker = config.get("custom_tracker")
     # Load the YOLOv8 model
     model = YOLO(weights_path)
 
@@ -41,7 +41,7 @@ def main():
 
         if success:
             # Run YOLOv8 tracking on the frame, persisting tracks between frames
-            results = model.track(frame, persist=True, conf=conf_threshold, tracker="botsort.yaml")
+            results = model.track(frame, persist=True, conf=conf_threshold, tracker=custom_tracker)
             boxes = results[0].boxes.xywh.cpu()
 
             if len(boxes) != 0:

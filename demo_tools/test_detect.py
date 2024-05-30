@@ -15,12 +15,12 @@ import time
 import pickle
 from ultralytics import YOLO
 
-weights_dir = 'weights/20240312_yolov8x_urchinDetector_best.pt'
-img_dir = '/home/wardlewo/Reggie/data/weird_test'
-save_dir = '/home/wardlewo/Reggie/data/20231201_urchin/test_results/detect'
+weights_dir = 'weights/20240409_yolov8x_urchinDetector_best.pt'
+img_dir = '/home/wardlewo/Reggie/data/20240402_combined_model_data/images/test'
+save_dir = '/home/wardlewo/Reggie/data/urchin_data_output/test_results/detect'
 os.makedirs(save_dir, exist_ok=True)
 imglist = sorted(glob.glob(os.path.join(img_dir, '*.jpg')))
-max_no = 10
+max_no = 100
 model = YOLO(weights_dir)
 
 for i, img_name in enumerate(imglist):
@@ -37,7 +37,7 @@ for i, img_name in enumerate(imglist):
         boxes = result.boxes  # Boxes object for bounding box outputs
         keypoints = result.keypoints  # Keypoints object for pose outputs
         probs = result.probs  # Probs object for classification outputs
-        result.show()  # display to screen
+        #result.show()  # display to screen
     
         # Construct the save path
         save_path = os.path.join(save_dir, img_filename + '_detect.jpg')

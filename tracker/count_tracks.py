@@ -138,7 +138,7 @@ def track(video_path, save_dir, model, track_config, conf_threshold, frame_skip,
             # TODO downsize frame to 640
             
             # Run YOLOv8 tracking on the frame, persisting tracks between frames
-            results = model.track(frame, persist=True, conf=conf_threshold, tracker=track_config)
+            results = model.track(frame, persist=True)
             boxes = results[0].boxes.xywh.cpu()
 
             if len(boxes) != 0:
