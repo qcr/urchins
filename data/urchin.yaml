@@ -3,8 +3,8 @@
 # the relative paths to train/val/test image directories (or text files with image paths)
 # a class "names" dictionary
 
-path: /home/wardlewo/Reggie/data/20231201_urchin/
-labels: /home/wardlewo/Reggie/data/20231201_urchin/labels
+path: /home/wardlewo/Reggie/data/20240402_combined_model_data/
+labels: /home/wardlewo/Reggie/data/20240402_combined_model_data/labels
 train: images/train # training images relative to 'path'
 val: images/validation # validation images relative to 'path'
 test: images/test # test images (optional)

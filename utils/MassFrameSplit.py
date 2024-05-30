@@ -1,6 +1,6 @@
 import os
 import argparse
-import cv
+import cv2 as cv
 
 
 def extract_frames(video_path, output_folder, fps=None):

@@ -1,0 +1,8 @@
+# Pipeline configuration file for ROS video_publisher.py
+
+# video file
+video_path_left_in:  /home/wardlewo/Reggie/data/20240222_urchin_videos_aims/video/unseen_test/20240222_aims_GX010887.MP4
+video_path_right_in: 
+# output directory
+save_dir: /home/wardlewo/Reggie/data/urchin_data_output
+
