@@ -27,17 +27,22 @@ def read_config(config_file):
 
 def video_publisher(video_left, video_right):
     rospy.init_node('video_publisher', anonymous=True)
-    image_pub = rospy.Publisher('image_raw', Image, queue_size=10)
+    left_image_pub = rospy.Publisher('left/image_raw', Image, queue_size=10)
+    right_image_pub = rospy.Publisher('right/image_raw', Image, queue_size=10)
     camera_info_pub = rospy.Publisher('camera_info', CameraInfo, queue_size=10)
     bridge = CvBridge()
 
     # Video file path
 
     # Open the video file
-    cap = cv2.VideoCapture(video_left)
+    cap_left = cv2.VideoCapture(video_left)
+    cap_right = cv2.VideoCapture(video_right)
 
-    if not cap.isOpened():
-        rospy.logerr("Error opening video file")
+    if not cap_left.isOpened():
+        rospy.logerr("Error opening left video file")
+        return
+    if not cap_right.isOpened():
+        rospy.logerr("Error opening right video file")
         return
 
     # Set the video frame rate
