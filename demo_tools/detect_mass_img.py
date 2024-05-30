@@ -5,8 +5,6 @@ test_detect.py - Test the detection of the YOLOv5 model on a images file
 """
 
 import os
-import torch
-import torchvision
 import glob
 # import numpy as np
 # from PIL import Image as PILImage
