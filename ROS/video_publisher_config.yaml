@@ -1,8 +1,8 @@
 # Pipeline configuration file for ROS video_publisher.py
 
 # video files
-video_path_left_in:  /home/wardlewo/Reggie/data/20240222_urchin_videos_aims/video/unseen_test/20240222_aims_GX010887.MP4
-video_path_right_in: /home/wardlewo/Reggie/data/20240222_urchin_videos_aims/video/unseen_test/20240222_aims_GX010887.MP4
+video_path_left_in:  /home/wardlewo/Reggie/data/ros/20240531_circle_base/stero_config/left/GX011005.MP4
+video_path_right_in: /home/wardlewo/Reggie/data/ros/20240531_circle_base/stero_config/right/GX010370.MP4
 
 #Not implemented yet
 # output directory

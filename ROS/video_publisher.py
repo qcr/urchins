@@ -26,7 +26,16 @@ def read_config(config_file):
         return None
     return config
 
-def video_publisher(video, camera_side, common_time):
+def video_publisher(video, camera_side, barrier):
+    """Publishes a video as a ROS Image message.
+    Args:
+        video (str): Path to the video file.
+        camera_side (str): Camera side (left or right).
+        barrier (threading.Barrier): Barrier to synchronize frame processing.
+    Publishes:
+        Image: ROS Image message.
+        CameraInfo: Camera information message.
+    """
     bridge = CvBridge()
     image_pub = rospy.Publisher(camera_side+"/image_raw", Image, queue_size=10)
     camera_info_pub = rospy.Publisher(camera_side+'/camera_info', CameraInfo, queue_size=10)
@@ -54,7 +63,8 @@ def video_publisher(video, camera_side, common_time):
         if ret:
             # Convert the frame to a ROS Image message
             image_msg = bridge.cv2_to_imgmsg(frame, encoding="bgr8")
-            image_msg.header.stamp = common_time
+            image_msg.header.stamp = rospy.Time.now()  # Use the current timestamp
+
             # Publish the ROS Image message
             image_pub.publish(image_msg)
 
@@ -62,7 +72,11 @@ def video_publisher(video, camera_side, common_time):
             camera_info_msg = CameraInfo()
             camera_info_msg.width = width
             camera_info_msg.height = height
+            camera_info_msg.header.stamp = image_msg.header.stamp  # Use the same timestamp
             camera_info_pub.publish(camera_info_msg)
+
+        # Wait for the other thread
+        barrier.wait()
 
         # Sleep to match the video frame rate
         rate.sleep()
@@ -70,21 +84,26 @@ def video_publisher(video, camera_side, common_time):
     # Release the video capture object
     cap.release()
 
-def stero_video_publisher(video_left, video_right):
+def stereo_video_publisher(video_left, video_right):
     rospy.init_node('video_publisher', anonymous=True)
-    common_time = rospy.Time.now()
-    left = threading.Thread(target=video_publisher, args=(video_left, "left", common_time))
-    right = threading.Thread(target=video_publisher, args=(video_right, "right", common_time))
-    left.start()
-    right.start()
-    left.join()
-    right.join()
+
+    # Barrier to synchronize the two threads
+    barrier = threading.Barrier(2)
+
+    left_thread = threading.Thread(target=video_publisher, args=(video_left, "left", barrier))
+    right_thread = threading.Thread(target=video_publisher, args=(video_right, "right", barrier))
+
+    left_thread.start()
+    right_thread.start()
+
+    left_thread.join()
+    right_thread.join()
 
 if __name__ == '__main__':
     try:
         config = read_config("video_publisher_config.yaml")
         video_left = config["video_path_left_in"]
         video_right = config["video_path_right_in"]
-        stero_video_publisher(video_left, video_right)
+        stereo_video_publisher(video_left, video_right)
     except rospy.ROSInterruptException:
         pass
